@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/meal_detail_screen.dart';
 import '../utils/dimens.dart';
 import '../utils/extensions.dart';
 import '../models/meal.dart';
@@ -9,7 +10,9 @@ class MealItem extends StatelessWidget {
 
   const MealItem(this.meal, {Key? key}) : super(key: key);
 
-  void selectMeal(BuildContext context) {}
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(MealDetailScreen.route, arguments: meal);
+  }
 
   @override
   Widget build(BuildContext context) {
