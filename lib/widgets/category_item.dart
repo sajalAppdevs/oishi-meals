@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals/screens/category_meals_screen.dart';
 
+import '../screens/category_meals_screen.dart';
+import '../utils/dimens.dart';
 import '../models/category.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -18,7 +19,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       onTap: () => selectCategory(context),
       splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(radius),
       child: Container(
         padding: const EdgeInsets.all(15),
         child: Text(
@@ -34,7 +35,7 @@ class CategoryItem extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(radius),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/strings.dart';
-import '../models/dummy_data.dart';
+import '../utils/dummy_data.dart';
 import '../widgets/category_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -15,15 +15,17 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(appName),
       ),
-      body: GridView(
-        padding: const EdgeInsets.all(25),
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
+      body: SafeArea(
+        child: GridView(
+          padding: const EdgeInsets.all(25),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+          ),
+          children: dummyCategories.map((cat) => CategoryItem(cat)).toList(),
         ),
-        children: DUMMY_CATEGORIES.map((cat) => CategoryItem(cat)).toList(),
       ),
     );
   }
