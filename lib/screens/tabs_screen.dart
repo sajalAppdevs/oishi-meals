@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meals/screens/categories_screen.dart';
-import 'package:meals/screens/favourites_screen.dart';
 
+import '../screens/categories_screen.dart';
+import '../screens/favourites_screen.dart';
+import '../widgets/main_drawer.dart';
 import '../utils/strings.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -12,7 +13,10 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final _pages = const [CategoriesScreen(), FavouritesScreen()];
+  final _pages = const [
+    MapEntry(categories, CategoriesScreen()),
+    MapEntry(favourites, FavouritesScreen())
+  ];
 
   int _selectedTab = 0;
   void _selectTab(int tab) {
@@ -24,9 +28,10 @@ class _TabsScreenState extends State<TabsScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(appName),
+        title: Text(_pages[_selectedTab].key),
       ),
-      body: SafeArea(child: _pages[_selectedTab]),
+      drawer: const MainDrawer(),
+      body: SafeArea(child: _pages[_selectedTab].value),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (tab) => _selectTab(tab),
         selectedItemColor: theme.primaryColor,
@@ -35,11 +40,11 @@ class _TabsScreenState extends State<TabsScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
-            label: "Categories",
+            label: categories,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: "Favourites",
+            label: favourites,
           ),
         ],
       ),
