@@ -6,12 +6,15 @@ import '../utils/extensions.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  final Meal meal;
+  final Meal _meal;
 
-  const MealItem(this.meal, {Key? key}) : super(key: key);
+  const MealItem(this._meal, {Key? key}) : super(key: key);
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.route, arguments: meal);
+    Navigator.of(context).pushNamed(
+      MealDetailScreen.route,
+      arguments: _meal,
+    );
   }
 
   @override
@@ -35,7 +38,7 @@ class MealItem extends StatelessWidget {
                       topRight: Radius.circular(radius),
                     ),
                     child: Image.network(
-                      meal.imageUrl,
+                      _meal.imageUrl,
                       height: 250,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -52,7 +55,7 @@ class MealItem extends StatelessWidget {
                         horizontal: 20,
                       ),
                       child: Text(
-                        meal.title,
+                        _meal.title,
                         style: const TextStyle(
                           fontSize: 26,
                           color: Colors.white,
@@ -72,15 +75,15 @@ class MealItem extends StatelessWidget {
                 children: [
                   _MealInfo(
                     icon: Icons.schedule,
-                    text: "${meal.duration} minutes",
+                    text: "${_meal.duration} minutes",
                   ),
                   _MealInfo(
                     icon: Icons.work,
-                    text: meal.complexity.name.capitalized,
+                    text: _meal.complexity.name.capitalized,
                   ),
                   _MealInfo(
                     icon: Icons.attach_money,
-                    text: meal.affordability.name.capitalized,
+                    text: _meal.affordability.name.capitalized,
                   ),
                 ],
               ),
